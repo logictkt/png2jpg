@@ -27,7 +27,11 @@ end
 
 def search_dir_convert_png_2_jpg(path)
   dirs = Naturally.sort(Dir.glob("#{path}/**/"))
-  dirs.each { |dir| convert_png_2_jpg(dir) }
+  if dirs.empty?
+    convert_png_2_jpg(path)
+  else
+    dirs.each { |dir| convert_png_2_jpg(dir) }
+  end
 end
 
 ARGV.each do |path|
